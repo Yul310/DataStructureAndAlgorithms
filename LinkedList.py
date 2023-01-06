@@ -33,24 +33,64 @@ class LinkedList:
     def pop(self):
         if self.length == 0:
             return None
-
         temp = self.head
         pre = self.head
-
         while temp.next:
             pre = temp
-            temp = temp.next
-        
+            temp = temp.next      
         pre.next = None
         self.tail = pre
         self.length -= 1
-
         if self.length == 0:
             self.head = None
             self.tail = None
-
         print("temp",temp.value)
         return temp
+    
+    def prepend(self,value):      
+        newNode = Node(value)
+        if self.length == 0:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            newNode.next = self.head
+            self.head = newNode
+        self.length += 1
+
+    def popFirst(self):
+        if self.length == 0:
+            return None
+     
+        poped = self.head
+        
+        self.head = self.head.next
+        poped.next = None
+        
+        self.length -= 1
+        if self.length == 0:
+            self.tail = None
+        
+        print("poped",poped.value)
+        return poped.value
+
+    def get(self,index):
+        if index < 0 or self.length <= index:
+            return None
+        temp = self.head
+        for _ in range(index):
+            print("1")
+            temp = temp.next
+        print(temp.value)
+        return temp
+            
+        # i = 0
+        # while i != index:
+        #     self.head = self.head.next
+        #     i += 1
+        # print(self.head.value)
+        # return self.head
+
+
 
 
 
@@ -89,13 +129,21 @@ class LinkedList:
 
 
 
-my_linked_list = LinkedList(1)
+my_linked_list = LinkedList(0)
+my_linked_list.append(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
-print(my_linked_list.pop())
-print(my_linked_list.pop())
-print(my_linked_list.pop())
-print(my_linked_list.pop())
+my_linked_list.get(2)
+
+# print(my_linked_list.pop())
+# print(my_linked_list.pop())
+# print(my_linked_list.pop())
+# print(my_linked_list.pop())
 # my_linked_list.pop()
-my_linked_list.printList()
+# my_linked_list.prepend(7)
+# my_linked_list.popFirst()
+# my_linked_list.popFirst()
+# my_linked_list.popFirst()
+# my_linked_list.popFirst()
+# my_linked_list.printList()
 # print(my_linked_list.head.value)
