@@ -118,14 +118,20 @@ class LinkedList:
             return None 
         elif index == 0:
             nextnode = self.get(index).next
+            print("here is the nextnode",nextnode)
             self.head = nextnode
+            self.length -= 1
+
+        elif index == (self.length - 1):
+            return self.pop()
             
         else:
             temp = self.get(index-1)
-            nextnode = temp.next.next
-            temp.next = nextnode
-
-        return True
+            removed = temp.next
+            temp.next = removed.next
+            print("this is removed ->>>",removed)
+            self.length -= 1
+            return removed
 
             
 
@@ -180,7 +186,7 @@ my_linked_list = LinkedList(0)
 my_linked_list.append(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
-my_linked_list.remove(0)
+my_linked_list.remove(3)
 # my_linked_list.insert(1,77)
 # my_linked_list.set_value(3,10)
 # my_linked_list.get(2)
@@ -197,4 +203,5 @@ my_linked_list.remove(0)
 # my_linked_list.popFirst()
 print("all nodes printing starts here!!!")
 my_linked_list.printList()
+print(my_linked_list.length)
 # print(my_linked_list.head.value)
