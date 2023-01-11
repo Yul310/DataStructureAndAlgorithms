@@ -82,6 +82,53 @@ class LinkedList:
             temp = temp.next
         print(temp.value)
         return temp
+
+    def set_value(self,index,value):
+        # temp = self.head
+        # for _ in range(index):
+        #     temp = temp.next
+        # temp.value = value
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+    def insert(self,index,value):
+        if index<0 or index > self.length:
+            return False
+        new_node = Node(value) 
+        temp = self.get(index)
+        if index == 0:
+            self.head = new_node
+            self.head.next = temp
+        else:
+            prev = self.get(index-1)
+            print("pre",prev.value)
+            new_node.next = prev.next
+            prev.next = new_node
+
+        self.length += 1
+
+        return True
+
+
+    def remove(self,index):
+        if index < 0 or index >= self.length or self.length == 0:
+            return None 
+        elif index == 0:
+            nextnode = self.get(index).next
+            self.head = nextnode
+            
+        else:
+            temp = self.get(index-1)
+            nextnode = temp.next.next
+            temp.next = nextnode
+
+        return True
+
+            
+
             
         # i = 0
         # while i != index:
@@ -133,7 +180,10 @@ my_linked_list = LinkedList(0)
 my_linked_list.append(1)
 my_linked_list.append(2)
 my_linked_list.append(3)
-my_linked_list.get(2)
+my_linked_list.remove(0)
+# my_linked_list.insert(1,77)
+# my_linked_list.set_value(3,10)
+# my_linked_list.get(2)
 
 # print(my_linked_list.pop())
 # print(my_linked_list.pop())
@@ -145,5 +195,6 @@ my_linked_list.get(2)
 # my_linked_list.popFirst()
 # my_linked_list.popFirst()
 # my_linked_list.popFirst()
-# my_linked_list.printList()
+print("all nodes printing starts here!!!")
+my_linked_list.printList()
 # print(my_linked_list.head.value)
