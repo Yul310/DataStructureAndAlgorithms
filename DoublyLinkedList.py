@@ -55,11 +55,53 @@ class DoublyLinkedList:
         print(temp.value)
         return temp.value
 
+    def prepend(self,value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            temp = self.head
+            self.head = new_node
+            temp.prev = self.head
+            self.head.next = temp
+
+        self.length += 1
+        return True
+
+    def popFirst(self):
+        if self.length == 0:
+            print("nothing here")
+            return None
+
+        temp = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+         
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None
+            
+        self.length -= 1
+        print("popedfirst",temp)
+        return temp
+
+
 my_doubly_linked_list = DoublyLinkedList(7)
 my_doubly_linked_list.append(5)
 my_doubly_linked_list.append(9)
 my_doubly_linked_list.print_list()
 print("haha")
 my_doubly_linked_list.pop()
+print("haha")
+my_doubly_linked_list.prepend(0)
+my_doubly_linked_list.print_list()
+print("haha")
+my_doubly_linked_list.popFirst()
+my_doubly_linked_list.popFirst()
+my_doubly_linked_list.popFirst()
+my_doubly_linked_list.popFirst()
 my_doubly_linked_list.print_list()
 
