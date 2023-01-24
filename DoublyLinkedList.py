@@ -88,6 +88,24 @@ class DoublyLinkedList:
         print("popedfirst",temp)
         return temp
 
+    def get(self,index):
+
+        if index < 0 or index >= self.length:
+            print("none")
+            return None
+        temp = self.head
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1,index,-1):
+                temp = temp.prev
+
+        print(temp)
+        return temp
+
+
 
 my_doubly_linked_list = DoublyLinkedList(7)
 my_doubly_linked_list.append(5)
@@ -99,9 +117,10 @@ print("haha")
 my_doubly_linked_list.prepend(0)
 my_doubly_linked_list.print_list()
 print("haha")
-my_doubly_linked_list.popFirst()
-my_doubly_linked_list.popFirst()
-my_doubly_linked_list.popFirst()
-my_doubly_linked_list.popFirst()
-my_doubly_linked_list.print_list()
+# my_doubly_linked_list.popFirst()
+# my_doubly_linked_list.popFirst()
+# my_doubly_linked_list.popFirst()
+# my_doubly_linked_list.popFirst()
+# my_doubly_linked_list.print_list()
+my_doubly_linked_list.get(9)
 
