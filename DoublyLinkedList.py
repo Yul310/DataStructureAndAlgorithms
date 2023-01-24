@@ -69,7 +69,7 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
-    def popFirst(self):
+    def pop_first(self):
         if self.length == 0:
             print("nothing here")
             return None
@@ -104,23 +104,78 @@ class DoublyLinkedList:
 
         print(temp)
         return temp
+    
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        else:
+            return False
+
+    def insert(self,index,value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+
+        new_node = Node(value)
+        before = self.get(index-1)
+        after = before.next
+
+        before.next = new_node
+        after.prev = new_node
+        new_node.next = after
+        new_node.prev = before
+
+        self.length += 1
+        return True
+
+    def remove(self,index):
+        if self.length == 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length -1:
+            return self.pop()
+        else:
+            removed = self.get(index)
+            removed.prev.next = removed.next
+            removed.next.prev = removed.prev
+        
+
+            removed.next = None
+            removed.prev = None
+           
+            return removed
 
 
 
-my_doubly_linked_list = DoublyLinkedList(7)
-my_doubly_linked_list.append(5)
-my_doubly_linked_list.append(9)
+            
+
+
+
+
+
+
+my_doubly_linked_list = DoublyLinkedList(1)
+my_doubly_linked_list.append(2)
+my_doubly_linked_list.append(4)
+my_doubly_linked_list.insert(2,3)
+my_doubly_linked_list.remove(1)
 my_doubly_linked_list.print_list()
-print("haha")
-my_doubly_linked_list.pop()
-print("haha")
-my_doubly_linked_list.prepend(0)
-my_doubly_linked_list.print_list()
-print("haha")
-# my_doubly_linked_list.popFirst()
-# my_doubly_linked_list.popFirst()
-# my_doubly_linked_list.popFirst()
-# my_doubly_linked_list.popFirst()
+# print("haha")
+# my_doubly_linked_list.pop()
+# print("haha")
+# my_doubly_linked_list.prepend(0)
 # my_doubly_linked_list.print_list()
-my_doubly_linked_list.get(9)
+# print("haha")
+# my_doubly_linked_list.pop_first()
+# my_doubly_linked_list.pop_first()
+# my_doubly_linked_list.pop_first()
+# my_doubly_linked_list.pop_first()
+# my_doubly_linked_list.print_list()
+my_doubly_linked_list.get(1)
 
