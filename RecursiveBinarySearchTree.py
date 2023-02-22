@@ -69,6 +69,10 @@ class BinarySearchTree:
             current_node.left = self.__r_insert(current_node.right,value)
         return current_node
 
+    def r_insert(self,value):
+        if self.root == None:
+            self.root = Node(value)
+        self.__r_insert(self.root, value)
 
 
 my_tree = BinarySearchTree()
@@ -77,5 +81,6 @@ my_tree.insert(21)
 my_tree.insert(76)
 my_tree.insert(19)
 my_tree.insert(26)
+my_tree.insert(2)
 
-print(my_tree.r_contains(19))
+print(my_tree.r_contains(2))
