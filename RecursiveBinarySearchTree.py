@@ -92,7 +92,10 @@ class BinarySearchTree:
 
         return current_node
 
-
+    def min_value(self,current_node):
+        while current_node.left is not None:
+            current_node = current_node.left
+        return current_node.value
 
 my_tree = BinarySearchTree()
 my_tree.insert(47)
@@ -105,3 +108,6 @@ my_tree.__r_insert(13)
 
 print(my_tree.r_contains(2))
 print(my_tree.r_contains(13))
+print( my_tree.min_value(my_tree.root) )
+
+print( my_tree.min_value(my_tree.root.right) )
