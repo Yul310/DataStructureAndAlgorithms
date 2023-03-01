@@ -22,7 +22,23 @@ def merge(list1, list2):
     return combined
 
 
+def merge_sort(my_list):
+    if len(my_list) == 1:
+        return my_list
+    mid_index = int(len(my_list)/2)
+    left = merge_sort(my_list[:mid_index])
+    right = merge_sort(my_list[mid_index:])
+    
+    return merge(left, right)
+
+
+
+original_list = [3,1,4,2]
+
+sorted_list = merge_sort(original_list)
+
+print('Original List:', original_list)
 
 
 # MERGE REQUIRES TWO SORTED LISTS:
-print(merge([1,2,7,8], [3,4,5,6]))
+# print(merge([1,2,7,8], [3,4,5,6]))
